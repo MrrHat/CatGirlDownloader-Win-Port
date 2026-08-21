@@ -7,6 +7,8 @@ I've always wanted to use Catgirldownloader from https://github.com/Nyarchlinux 
 but i found a problem, it was linux only app, so i started porting it into the windows, even with some additional features
 such as: NSFW switch, Videos\gifs\photos (video player is strugling bc i couldnt add hardware acceleration) Tags\anti-Tags, Danbooru account log-in, saving images, gallery (that saving up to 10 last images to save RAM) Favorite. Copying images, and their URL
 
+Also you can use not only Catgirl downloading, but also "Waifu Downloading, and Danbooru images"
+
 <img width="446" height="587" alt="изображение" src="https://github.com/user-attachments/assets/2e3a46d4-1bc6-476d-8f9e-a3b6ff896dcf" />
 
 
