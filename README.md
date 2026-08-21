@@ -2,12 +2,21 @@
 A GTK4 application that downloads images of catgirl based on https://nekos.moe
 ![](http://nyarchlinux.moe/assets/img/catgirldownloader-screenshots.png)
 
-## Building
-1. `meson setup <build_dir> [--prefix <prefix>]`
-> Prefix is `/usr/local` by default
-2. `meson compile -C <build_dir>`
-3. `meson install -C <build_dir> [--destdir <dest_dir>]`
-> Package is installed globally by default, or in `<dest_dir>` if `--destdir` is specified (path are relative to `<build_dir>` )
+## About
+I've always wanted to use Catgirldownloader from https://github.com/Nyarchlinux , on windows
+but i found a problem, it was linux only app, so i started porting it into the windows, even with some additional features
+such as: NSFW switch, Videos\gifs\photos (video player is strugling bc i couldnt add hardware acceleration) Tags\anti-Tags, Danbooru account log-in, saving images, gallery (that saving up to 10 last images to save RAM) Favorite. Copying images, and their URL
 
-## Packaging
-Make sure you have `nfpm` and `sh` installed, then run `./package.sh`.
+I dont know how to code properly, so yea, its "vibecoded" i admit that, but i just wanted a good app on the windows, so i had to do it this way.
+Its a great app, everyone should try it at least once, and now even windows users can try it out.
+
+## Building
+
+Theres 2 way's,
+1 - just launch installer from Latest Release
+
+2 - cd to a folder where you exported all the files, and then
+
+# python build_exe.py
+
+Then Cat girl Downloader gonna be in "dist" folder, thats it.
