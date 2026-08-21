@@ -18,6 +18,11 @@ Its a great app, everyone should try it at least once, and now even windows user
 <img width="805" height="603" alt="изображение" src="https://github.com/user-attachments/assets/ef65f955-4b73-4fad-aeb7-be68e42759a3" />
 
 
+Feel free to suggest anything, i will be happy if someone will help with hardware acceleration, or give me ideas what should i add next
+Everyone gonna be welcome here, join discord of this project to easily suggest stuff, or try to help
+## https://discord.gg/8KdVvUjdY6
+
+
 ## Building
 
 Theres 2 way's,
