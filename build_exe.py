@@ -5,6 +5,8 @@ import sys
 
 # Путь к твоей установки MSYS2
 MSYS2_MINGW64 = r"C:\msys64\mingw64"
+# Путь к Inno Setup (стандартный путь установки)
+INNO_SETUP = r"C:\Program Files\Inno Setup 7\ISCC.exe"
 
 def copy_tree(src, dst):
     if not os.path.exists(src): return
@@ -18,12 +20,12 @@ def copy_tree(src, dst):
             shutil.copy2(s, d)
 
 def main():
-    print("=== 1/3 Запуск PyInstaller ===")
+    print("=== 1/4 Запуск PyInstaller ===")
     cmd = [
         sys.executable, "-m", "PyInstaller",
         "--name", "CatgirlDownloader",
         "--icon", "icon.ico",
-        "--windowed",  # Убрали консоль, так как все ошибки исправлены
+        "--windowed",
         "--noconfirm",
         "--clean",
         "--hidden-import=gi",
@@ -35,14 +37,13 @@ def main():
     ]
     subprocess.run(cmd, check=True)
 
-    print("=== 2/3 Копирование библиотек GTK4/libadwaita ===")
+    print("=== 2/4 Копирование библиотек GTK4/libadwaita ===")
     dist_dir = os.path.join("dist", "CatgirlDownloader")
     internal_dir = os.path.join(dist_dir, "_internal")
     
     if not os.path.exists(internal_dir):
         os.makedirs(internal_dir, exist_ok=True)
 
-    # Копируем нужные папки
     dirs_to_copy = [
         (os.path.join(MSYS2_MINGW64, "lib", "girepository-1.0"), os.path.join(internal_dir, "lib", "girepository-1.0")),
         (os.path.join(MSYS2_MINGW64, "lib", "gdk-pixbuf-2.0"), os.path.join(internal_dir, "lib", "gdk-pixbuf-2.0")),
@@ -55,25 +56,28 @@ def main():
         print(f"Копирую {os.path.basename(os.path.dirname(src))}...")
         copy_tree(src, dst)
 
-    print("=== 3/3 Копирование DLL файлов (включая ANGLE и D3DCompiler) ===")
+    print("=== 3/4 Копирование DLL файлов ===")
     bin_dir = os.path.join(MSYS2_MINGW64, "bin")
-    
-    # Копируем вообще все DLL из MSYS2 (там есть libEGL.dll и libGLESv2.dll для ANGLE)
     for file in os.listdir(bin_dir):
         if file.endswith(".dll"):
             shutil.copy2(os.path.join(bin_dir, file), os.path.join(internal_dir, file))
 
-    # ЖЕСТКО КОПИРУЕМ d3dcompiler_47.dll ИЗ WINDOWS ДЛЯ GPU-УСКОРЕНИЯ!
     d3d_path_sys = r"C:\Windows\System32\d3dcompiler_47.dll"
     if os.path.exists(d3d_path_sys):
         shutil.copy2(d3d_path_sys, os.path.join(internal_dir, "d3dcompiler_47.dll"))
         print("Скопирован d3dcompiler_47.dll из System32")
     else:
-        print("ВНИМАНИЕ: d3dcompiler_47.dll не найден в C:\\Windows\\System32!")
+        print("ВНИМАНИЕ: d3dcompiler_47.dll не найден!")
 
-    print("\n=== Сборка завершена! ===")
-    print(f"Твой EXE находится в: {os.path.abspath(dist_dir)}")
-    print("Запускай CatgirlDownloader.exe")
+    print("=== 4/4 Сборка установщика (Inno Setup) ===")
+    if os.path.exists(INNO_SETUP):
+        # Запускаем компилятор Inno Setup
+        subprocess.run([INNO_SETUP, "installer.iss"], check=True)
+        print("\n[УСПЕХ] Установщик создан!")
+        print(f"Ищи файл CatgirlDownloader_Setup.exe в папке: installer_output/")
+    else:
+        print("\n[ВНИМАНИЕ] Inno Setup не найден по пути C:\\Program Files\\Inno Setup 7\\")
+        print("Сборка завершена в виде папки. Твой EXE находится в: dist/CatgirlDownloader/")
 
 if __name__ == "__main__":
     main()
