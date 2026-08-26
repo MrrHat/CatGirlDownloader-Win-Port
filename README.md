@@ -20,6 +20,7 @@ Its a great app, everyone should try it at least once, and now even windows user
 
 Feel free to suggest anything, i will be happy if someone will help with hardware acceleration, or give me ideas what should i add next
 Everyone gonna be welcome here, join discord of this project to easily suggest stuff, or try to help
+
 ## https://discord.gg/8KdVvUjdY6
 
 
