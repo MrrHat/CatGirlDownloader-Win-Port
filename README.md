@@ -22,8 +22,6 @@ Originally built for [Nyarch Linux](https://github.com/Nyarchlinux), ported and 
 <img src="assets/screenshot-gallery.png" width="45%" alt="Gallery view" />
 </div>
 
-> Put your own screenshots in an `assets/` folder in the repo and update the paths above — images stored directly in the repo load reliably for everyone, unlike pasted GitHub attachment links.
-
 ---
 
 ##  Features
