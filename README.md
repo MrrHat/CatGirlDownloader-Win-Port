@@ -1,36 +1,112 @@
-# CatgirlDownloader
-A GTK4 application that downloads images of catgirl based on https://nekos.moe
-![](http://nyarchlinux.moe/assets/img/catgirldownloader-screenshots.png)
+<div align="center">
 
-## About
-I've always wanted to use Catgirldownloader from https://github.com/Nyarchlinux , on windows
-but i found a problem, it was linux only app, so i started porting it into the windows, even with some additional features
-such as: NSFW switch, Videos\gifs\photos (video player is strugling bc i couldnt add hardware acceleration) Tags\anti-Tags, Danbooru account log-in, saving images, gallery (that saving up to 10 last images to save RAM) Favorite. Copying images, and their URL
+#  CatgirlDownloader — Windows Port
 
-Also you can use not only Catgirl downloading, but also "Waifu Downloading, and Danbooru images"
+**A GTK4 desktop app for downloading catgirl, waifu, and Danbooru images — now on Windows.**
 
-<img width="446" height="587" alt="изображение" src="https://github.com/user-attachments/assets/2e3a46d4-1bc6-476d-8f9e-a3b6ff896dcf" />
+Originally built for [Nyarch Linux](https://github.com/Nyarchlinux), ported and extended for Windows users.
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows)](https://github.com/MrrHat/CatGirlDownloader-Win-Port/releases)
+[![Discord](https://img.shields.io/discord/0?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8KdVvUjdY6)
+[![Stars](https://img.shields.io/github/stars/MrrHat/CatGirlDownloader-Win-Port?style=social)](https://github.com/MrrHat/CatGirlDownloader-Win-Port/stargazers)
 
-I dont know how to code properly, so yea, its "vibecoded" i admit that, but i just wanted a good app on the windows, so i had to do it this way.
-Its a great app, everyone should try it at least once, and now even windows users can try it out.
+</div>
 
-<img width="805" height="603" alt="изображение" src="https://github.com/user-attachments/assets/ef65f955-4b73-4fad-aeb7-be68e42759a3" />
+---
 
+##  Preview
 
-Feel free to suggest anything, i will be happy if someone will help with hardware acceleration, or give me ideas what should i add next
-Everyone gonna be welcome here, join discord of this project to easily suggest stuff, or try to help
+<div align="center">
+<img src="assets/screenshot-main.png" width="45%" alt="Main window" />
+<img src="assets/screenshot-gallery.png" width="45%" alt="Gallery view" />
+</div>
 
-## https://discord.gg/8KdVvUjdY6
+> Put your own screenshots in an `assets/` folder in the repo and update the paths above — images stored directly in the repo load reliably for everyone, unlike pasted GitHub attachment links.
 
+---
 
-## Building
+##  Features
 
-Theres 2 way's,
-1 - just launch installer from Latest Release
+-  Download images from **nekos.moe**, plus **Waifu** and **Danbooru** sources
+-  NSFW toggle
+-  Support for images, GIFs, and videos
+-  Tag & anti-tag filtering
+-  Danbooru account login
+-  Save images locally, with one click
+-  Built-in gallery (keeps the last 10 images to save RAM)
+-  Favorites
+-  Copy image or image URL to clipboard
 
-2 - cd to a folder where you exported all the files, and then
+>  Video playback currently lacks hardware acceleration — see [Roadmap](#-roadmap) below.
 
-# python build_exe.py
+---
 
-Then Cat girl Downloader gonna be in "dist" folder, thats it.
+##  Installation
+
+### Option 1 — Installer (recommended)
+
+1. Go to [**Releases**](https://github.com/MrrHat/CatGirlDownloader-Win-Port/releases)
+2. Download the latest `.exe` installer
+3. Run it and follow the setup wizard
+
+### Option 2 — Build from source
+
+```bash
+git clone https://github.com/MrrHat/CatGirlDownloader-Win-Port.git
+cd CatGirlDownloader-Win-Port
+python build_exe.py
+```
+
+The built app will appear in the `dist/` folder.
+
+**Requirements:** Python 3, GTK4 runtime (see [`WINDOWS.md`](WINDOWS.md) for detailed setup notes).
+
+---
+
+##  Usage
+
+1. Launch **CatgirlDownloader**
+2. Pick a source (Catgirl / Waifu / Danbooru)
+3. (Optional) log into your Danbooru account, set tags/anti-tags, toggle NSFW
+4. Browse, save, favorite, or copy images straight from the gallery
+
+---
+
+##  Roadmap
+
+- [ ] Hardware-accelerated video playback
+- [ ] More image sources
+- [ ] UI polish / theming options
+
+Got an idea? Open an [issue](https://github.com/MrrHat/CatGirlDownloader-Win-Port/issues) or suggest it in Discord.
+
+---
+
+##  Contributing
+
+This project is community-friendly and openly admits to being "vibe-coded" — contributions, refactors, and code review are very welcome, especially around hardware acceleration and packaging.
+
+1. Fork the repo
+2. Create a branch (`git checkout -b feature/my-feature`)
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+##  Community
+
+Join the Discord to report bugs, suggest features, or just hang out:
+
+**[discord.gg/8KdVvUjdY6](https://discord.gg/8KdVvUjdY6)**
+
+---
+
+##  Credits
+
+- Original **[CatgirlDownloader](https://github.com/Nyarchlinux)** by the Nyarch Linux team
+- Image sources: [nekos.moe](https://nekos.moe), Danbooru
+
+##  License
+
+Licensed under [GPL-3.0](LICENSE).
