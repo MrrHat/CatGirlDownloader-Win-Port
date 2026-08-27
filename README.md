@@ -8,7 +8,7 @@ Originally built for [Nyarch Linux](https://github.com/Nyarchlinux), ported and 
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows-0078D6?logo=windows)](https://github.com/MrrHat/CatGirlDownloader-Win-Port/releases)
-[![Discord](https://img.shields.io/discord/0?label=Discord&logo=discord&color=5865F2)](https://discord.gg/8KdVvUjdY6)
+[![Discord](https://img.shields.io/discord/0?label=Discord&logo=discord&color=5865F2)](https://discord.gg/nWDngHg23E)
 [![Stars](https://img.shields.io/github/stars/MrrHat/CatGirlDownloader-Win-Port?style=social)](https://github.com/MrrHat/CatGirlDownloader-Win-Port/stargazers)
 
 </div>
@@ -96,7 +96,7 @@ This project is community-friendly and openly admits to being "vibe-coded" — c
 
 Join the Discord to report bugs, suggest features, or just hang out:
 
-**[discord.gg/8KdVvUjdY6](https://discord.gg/8KdVvUjdY6)**
+**[[discord.gg/nWDngHg23E](https://discord.gg/nWDngHg23E)**
 
 ---
 
