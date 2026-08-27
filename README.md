@@ -107,4 +107,4 @@ Join the Discord to report bugs, suggest features, or just hang out:
 
 ##  License
 
-Licensed under [GPL-3.0](LICENSE).
+Licensed under [AGPL](LICENSE).
