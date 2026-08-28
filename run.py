@@ -11,16 +11,12 @@ def setup_environment():
         os.environ['XDG_DATA_DIRS'] = os.path.join(base_path, 'share') + os.pathsep + os.environ.get('XDG_DATA_DIRS', '')
         os.environ['GTK_EXE_PREFIX'] = base_path
 
-    # --- АППАРАТНОЕ ДЕКОДИРОВАНИЕ ВИДЕО (GPU) ---
-    # Заставляем GStreamer пересканировать плагины при запуске (на случай, если кэш устарел)
     os.environ['GST_REGISTRY_UPDATE'] = 'yes'
     
-    # ПРИНУДИТЕЛЬНО ВКЛЮЧАЕМ D3D11 И ОТКЛЮЧАЕМ СОФТВЕРНЫЕ ДЕКОДЕРЫ!
-    # rank 300 = максимальный приоритет, rank -1 = полностью отключено
+
     os.environ['GST_PLUGIN_FEATURE_RANK'] = 'd3d11h264dec:300;d3d11vp9dec:300;d3d11av1dec:300;avdec_h264:-1;vp9dec:-1'
 
 def load_app_package():
-    """Загружает исходники как пакет"""
     if getattr(sys, 'frozen', False):
         src_dir = os.path.join(sys._MEIPASS, 'src')
     else:
@@ -48,9 +44,7 @@ def main():
     gi.require_version("Gtk", "4.0")
     gi.require_version("Adw", "1")
 
-    # В режиме exe мы не компилируем gresource, а читаем UI напрямую
     if not getattr(sys, 'frozen', False):
-        # Этот код выполнится только при запуске через python run.py
         import shutil
         import subprocess
         from gi.repository import Gio
