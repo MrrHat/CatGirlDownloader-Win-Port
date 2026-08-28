@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <template class="CatgirldownloaderWindow" parent="AdwApplicationWindow">
+    <property name="default-width">800</property>
+    <property name="default-height">600</property>
+    <child>
+      <object class="AdwToastOverlay" id="toast_overlay">
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            
+            <!-- Header Bar -->
+            <child>
+              <object class="GtkHeaderBar" id="header_bar">
+                <child type="start">
+                  <object class="GtkButton" id="refresh_button">
+                    <property name="icon-name">view-refresh-symbolic</property>
+                    <property name="tooltip-text">Reload (Space)</property>
+                  </object>
+                </child>
+                <child type="start">
+                  <object class="GtkSpinner" id="spinner"></object>
+                </child>
+                <child type="start">
+                  <object class="GtkBox">
+                    <property name="spacing">8</property>
+                    <property name="valign">center</property>
+                    <child><object class="GtkLabel"><property name="label" translatable="yes">Auto</property></object></child>
+                    <child><object class="GtkSwitch" id="auto_reload_switch"><property name="valign">center</property></object></child>
+                  </object>
+                </child>
+                <child type="title">
+                  <object class="GtkDropDown" id="source_selector"></object>
+                </child>
+                <child type="end">
+                  <object class="GtkButton" id="surprise_button">
+                    <property name="icon-name">face-cool-symbolic</property>
+                    <property name="tooltip-text">Surprise Me!</property>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkToggleButton" id="slideshow_button">
+                    <property name="icon-name">media-playback-start-symbolic</property>
+                    <property name="tooltip-text">Slideshow</property>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkButton" id="settings_button">
+                    <property name="icon-name">emblem-system-symbolic</property>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkButton" id="gallery_button">
+                    <property name="icon-name">image-x-generic-symbolic</property>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkButton" id="favorite_button">
+                    <property name="icon-name">emblem-favorite-symbolic</property>
+                    <property name="tooltip-text">Favorite (F)</property>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkButton" id="savebutton">
+                    <property name="icon-name">folder-download-symbolic</property>
+                    <property name="tooltip-text">Save (S)</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            
+            <!-- Tags Bar -->
+            <child>
+              <object class="GtkBox" id="tags_box">
+                <property name="orientation">horizontal</property>
+                <property name="spacing">8</property>
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
+                <property name="visible">False</property>
+                <child>
+                  <object class="GtkEntry" id="tags_entry">
+                    <property name="placeholder-text">Include tags</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="anti_tags_entry">
+                    <property name="placeholder-text">Exclude tags</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="apply_tags_button">
+                    <property name="icon-name">media-playback-start-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <!-- Media Area (Image + Video + Info Overlay) -->
+            <child>
+              <object class="GtkOverlay" id="image_overlay">
+                <child>
+                  <object class="GtkBox" id="media_box">
+                    <property name="orientation">vertical</property>
+                    <property name="vexpand">True</property>
+                    <property name="hexpand">True</property>
+                    <child>
+                      <object class="GtkScrolledWindow" id="image_scroll">
+                        <property name="vexpand">True</property>
+                        <property name="hexpand">True</property>
+                        <child>
+                          <object class="GtkPicture" id="image">
+                            <property name="content-fit">contain</property>
+                            <property name="can-shrink">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkVideo" id="video_player">
+                        <property name="visible">False</property>
+                        <property name="vexpand">True</property>
+                        <property name="hexpand">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                
+                <child type="overlay">
+                  <object class="GtkRevealer" id="info_revealer">
+                    <property name="transition-type">crossfade</property>
+                    <property name="reveal-child">False</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <child>
+                      <object class="GtkBox">
+                        <style><class name="osd"/></style>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">8</property>
+                        <property name="margin-start">12</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-top">12</property>
+                        <property name="margin-bottom">12</property>
+                        <child>
+                          <object class="GtkLabel" id="info_label">
+                            <property name="label">Artist: ...</property>
+                            <property name="use-markup">True</property>
+                            <property name="wrap">True</property>
+                            <property name="max-width-chars">50</property>
+                            <property name="halign">start</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="similar_button">
+                            <property name="label">Find Similar</property>
+                            <property name="halign">start</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                
+              </object>
+            </child>
+            
+            <!-- Action Bar -->
+            <child>
+              <object class="GtkActionBar">
+                <child>
+                  <object class="GtkButton" id="copy_url_button">
+                    <property name="icon-name">edit-copy-symbolic</property>
+                    <property name="label">Copy URL</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="copy_image_button">
+                    <property name="icon-name">image-x-generic-symbolic</property>
+                    <property name="label">Copy Image</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="open_source_button">
+                    <property name="icon-name">web-browser-symbolic</property>
+                    <property name="label">Open Source</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
