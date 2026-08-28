@@ -12,10 +12,10 @@ class UserPreferences:
             "danbooru_anti_tags": "",
             "waifu_tags": "",
             "waifu_anti_tags": "",
-            "danbooru_login": "",      # <--- ДОБАВИТЬ ЭТО
+            "danbooru_login": "",
             "danbooru_api_key": "",
             "quick_save_folder": "",
-            "media_filter": "all",    # <--- ДОБАВИТЬ ЭТО
+            "media_filter": "all",
         }
         self.preferences = dict(self._defaults)
         self.directory = os.path.join(GLib.get_user_config_dir(), "catgirldownloader")
