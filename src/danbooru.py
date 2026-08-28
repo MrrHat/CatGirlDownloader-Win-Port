@@ -44,7 +44,6 @@ class DanbooruDownloaderAPI(BaseDownloaderAPI):
         for t in anti.split():
             if t: parts.append(f"-{t}")
 
-        # Фильтр медиа
         media_filter = self._settings.get_preference("media_filter") if self._settings else "all"
         if media_filter == "images": parts.append("-animated")
         elif media_filter == "videos": parts.append("animated")
@@ -93,7 +92,6 @@ class DanbooruDownloaderAPI(BaseDownloaderAPI):
         return None
 
     def get_tag_suggestions(self, prefix: str) -> list:
-        # Читаем логин и ключ из настроек
         login = self._settings.get_preference("danbooru_login") if self._settings else None
         api_key = self._settings.get_preference("danbooru_api_key") if self._settings else None
 
@@ -101,7 +99,6 @@ class DanbooruDownloaderAPI(BaseDownloaderAPI):
             url = f"{self.endpoint}/tags.json"
             params = {"search[name_matches]": f"{prefix}*", "limit": 5}
             
-            # ДОБАВЛЕНО: Авторизация
             if login and api_key:
                 params["login"] = login
                 params["api_key"] = api_key
@@ -175,7 +172,6 @@ class DanbooruDownloaderAPI(BaseDownloaderAPI):
         group.set_title("Tags")
         page.add(group)
         
-        # Include tags
         row_inc = Adw.ActionRow(title="Search Tags")
         entry_inc = Gtk.Entry()
         entry_inc.set_text(self.tags)
@@ -185,7 +181,6 @@ class DanbooruDownloaderAPI(BaseDownloaderAPI):
         row_inc.add_suffix(entry_inc)
         group.add(row_inc)
         
-        # Exclude tags
         row_exc = Adw.ActionRow(title="Exclude Tags")
         entry_exc = Gtk.Entry()
         entry_exc.set_text(self.anti_tags)
@@ -220,7 +215,6 @@ class DanbooruDownloaderAPI(BaseDownloaderAPI):
             self._settings.set_preference("danbooru_anti_tags", self.anti_tags)
 
     def _on_prefs_close(self, parent: Any) -> None:
-        # Check forbidden tags
         all_tags = (self.tags + " " + self.anti_tags).lower().split()
         if _FORBIDDEN_TAG_1 in all_tags or _FORBIDDEN_TAG_2 in all_tags:
             self.open_forbid_tag_notif(parent)
