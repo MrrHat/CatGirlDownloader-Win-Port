@@ -3,9 +3,7 @@ import shutil
 import subprocess
 import sys
 
-# Путь к твоей установки MSYS2
 MSYS2_MINGW64 = r"C:\msys64\mingw64"
-# Путь к Inno Setup (стандартный путь установки)
 INNO_SETUP = r"C:\Program Files\Inno Setup 7\ISCC.exe"
 
 def copy_tree(src, dst):
@@ -37,7 +35,6 @@ def main():
     ]
     subprocess.run(cmd, check=True)
 
-    print("=== 2/4 Копирование библиотек GTK4/libadwaita ===")
     dist_dir = os.path.join("dist", "CatgirlDownloader")
     internal_dir = os.path.join(dist_dir, "_internal")
     
@@ -53,10 +50,8 @@ def main():
     ]
     
     for src, dst in dirs_to_copy:
-        print(f"Копирую {os.path.basename(os.path.dirname(src))}...")
         copy_tree(src, dst)
 
-    print("=== 3/4 Копирование DLL файлов ===")
     bin_dir = os.path.join(MSYS2_MINGW64, "bin")
     for file in os.listdir(bin_dir):
         if file.endswith(".dll"):
@@ -65,19 +60,11 @@ def main():
     d3d_path_sys = r"C:\Windows\System32\d3dcompiler_47.dll"
     if os.path.exists(d3d_path_sys):
         shutil.copy2(d3d_path_sys, os.path.join(internal_dir, "d3dcompiler_47.dll"))
-        print("Скопирован d3dcompiler_47.dll из System32")
-    else:
-        print("ВНИМАНИЕ: d3dcompiler_47.dll не найден!")
 
-    print("=== 4/4 Сборка установщика (Inno Setup) ===")
+
     if os.path.exists(INNO_SETUP):
-        # Запускаем компилятор Inno Setup
         subprocess.run([INNO_SETUP, "installer.iss"], check=True)
-        print("\n[УСПЕХ] Установщик создан!")
-        print(f"Ищи файл CatgirlDownloader_Setup.exe в папке: installer_output/")
-    else:
-        print("\n[ВНИМАНИЕ] Inno Setup не найден по пути C:\\Program Files\\Inno Setup 7\\")
-        print("Сборка завершена в виде папки. Твой EXE находится в: dist/CatgirlDownloader/")
+
 
 if __name__ == "__main__":
     main()
