@@ -28,10 +28,8 @@ class HistoryManager:
         item = HistoryItem(url, source, artist, image_bytes)
         self.items.insert(0, item)
         
-        # ОГРАНИЧЕНИЕ: Храним только 10 последних картинок
         if len(self.items) > 10:
             removed_item = self.items.pop()
-            # Чистим байты и текстуру, чтобы Python точно удалил их из памяти
             removed_item.image_bytes = None 
             removed_item._texture = None
 
@@ -40,7 +38,6 @@ class HistoryManager:
         item = HistoryItem(url, source, artist, image_bytes)
         self.favorites.insert(0, item)
         
-        # ОГРАНИЧЕНИЕ: Храним только 10 избранных
         if len(self.favorites) > 10:
             removed_item = self.favorites.pop()
             removed_item.image_bytes = None
@@ -51,7 +48,6 @@ class GalleryWindow(Adw.Window):
         super().__init__(title="Gallery", transient_for=parent_window, default_width=800, default_height=600)
         self.parent_window = parent_window
         
-        # ИСПРАВЛЕНИЕ: Убиваем окно при закрытии, чтобы оно не висело
         self.connect("close-request", lambda w: w.destroy())
         
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
